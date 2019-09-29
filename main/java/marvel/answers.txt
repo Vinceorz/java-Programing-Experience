@@ -1,0 +1,11 @@
+CSE 331 Homework.  Answers to written questions.
+Edit this file to supply your answers.
+
+Name:  Nuo Chen
+
+Briefly describe any changes made to your Graph ADT from HW 3-4 and why
+those changes were made below.  (See the HW6 assignment for details.)
+
+I add the comparable interface and a compareTo method which compares the child node then label
+to allow sort the edge alphabetically later
+in BFS. This is also the problem I didn't do in last hw and therefore I fix it.

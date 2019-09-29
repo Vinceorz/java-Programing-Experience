@@ -1,0 +1,37 @@
+
+/*
+NOTE: This file is designed to help you just get a simple canvas with the correct
+settings, centered on the screen. If you'd like to modify this, you're totally
+welcome to do so. This is just to help you get something simple working first.
+ */
+
+/*
+This makes all <canvas> elements fill 90% of the width of whatever they're inside.
+We deliberately do not set the height here too - when we set canvas.width
+and canvas.height in Map.js, this 90% helps keep the canvas from being too but,
+but not setting the height means the image keeps the correct aspect ratio.
+ */
+canvas {
+    width: 90%;
+}
+
+/*
+This takes the <div> (or anything else) with the className of "canvasHolder"
+and centers whatever is inside it (like the canvas).
+ */
+.canvasHolder {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.buildingChoice {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+Select {
+
+}

@@ -1,0 +1,97 @@
+CSE 331 Homework.  Answers to written questions.
+Edit this file to supply your answers.
+
+Name:  <replace this with your name>
+
+Problem 1. (Written exercises)
+
+(a)
+  InQueue1:
+   Representation Invariant:
+   entries != null and entries never contain a null value
+
+   Abstraction Function:
+    AF(entries) = Queue<Integer>
+    AF(entries) is empty when entries.size == 0
+    The value consider "last" is entries.get(size - 1)
+    The value considered "first in" is entries.get(0)
+
+  InQueue2:
+    Representation Invariant:
+     entries != null and entries never contain a null value
+     front >= 0 and size >= 0
+     front < entries.length
+
+    Abstraction Function:
+     AF(entries) = a queue<Integer>
+     AF(entries) is empty when size == 0
+         The value consider "last" is entries[front + size - 1]
+         The value considered "first in" is entries[front]
+
+
+(b)
+a [1, 2]
+b [2, 3, 4]
+c [1, 2, 3]
+d [1, 2]
+e [1, 2, 3, 4]
+f [1, 2, 3]
+g [1, 2]
+h [2, 3, 4]
+
+a, d, g are equivalent
+b and h are equivalent
+c and f are equivalent
+e is unique
+
+
+(c)
+1. public int solveEquations(int x, int y, int z)
+    this is not possibly exposing the representation because it only returns
+    an int type which is primitive and not mutable
+2. public String[] decode(boolean slowly)
+    this could possibly expose the representation because the String[] is array
+    object which is mutable
+3. private Date myBirthday()
+    this could possibly expose the representation because the returned Date object
+    could be the original data in field
+4. public String toString()
+    this is not possibly exposing the representation because it only returns
+    an string type which is primitive and not mutable
+5. public Iterator<Integer> elements()
+    this could possibly expose the representation because the iterator has the remove
+    method which can change the private field if the iterator comes from the original
+    object
+6. public Deck(List<Card> cards)
+    this could possibly expose the representation because it takes the list as
+    input which is a mutable object
+
+Problem 2.  (Graph interface/operations)
+1. Because one node can have multiple edges, therefore I set the graph to be a Map object
+node is single unique node and string is a reasonable choice, the value to the node could
+be a list which store many edges. Edge could be its own class because it contains a label,
+and a destination node which would be helpful when finding the path between nodes. The
+graph, node, and edge, label and destination nodes cannot be null
+
+2. add, remove, list, node and edge should be essential. Check if the graph is empty and
+contains the node are also essential. I also put the showGraph in it as it can provide the
+client with a general picture of the graph. I add a clear and checkRep method to the class
+to help further implementation. I also add path as one method as it is one characteristic
+
+
+Problem 3.  (Testing strategy)
+My spec testing strategy is "0, 1, 2"
+one graph with empty node, one node, two node, and two alphabetical ordered nodes
+two nodes with one edge, two edge, three edge
+
+My implementation test has more cases than the spec testing as it includes
+not only the adding test, it also tests remove method, isEmpty and if contain
+certain node. Also the implementation tests toStringGraph method. Because I
+define a Edge class which need one more test class than spec test. This edge test
+class includes the test for getlabel, getChild, setlabel, and setChildNode.
+
+The test strategy for above methods are also "0, 1, 2", like remove method,
+i try remove zero node, then one node, finally two nodes
+
+
+

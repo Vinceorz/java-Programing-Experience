@@ -1,0 +1,22 @@
+1.
+(a) a collection of edges is easy to implement as I only need to include
+a list which contains the edge object. However, it is not good for defining
+more than one edge between two node as it would lead to duplicate edges in list
+
+an adjacency list is a good way as it is doable for the implementation while
+it also enables multiple edges implementation. However, it is not as clear as
+the matrix way to show the relationship
+
+an adjacency matrix could clearly represents the nodes relationship. However,
+it is hard to implement as it includes the matrix representation
+
+(b) I choose the second way as it is relatively easy to implement and can also
+relatively clear to represent the graph
+
+2.
+I delete the private field node and edge as I found them not be used in
+the implementation. I delete the parameter edge in addEdge method as it
+is not necessary. I also add test about circular edge, addnode, addEdge, listchildren
+as the feedback told me I should not use any methods that are not tested.
+I also add toString method in edge class to facilitate the implementation
+of toStringGraph in graph class

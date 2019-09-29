@@ -1,0 +1,53 @@
+CSE 331 Homework 3.  Answers to Written questions.
+Edit this file to supply your answers.
+
+Name:  <replace this with your name>
+
+Problem 6.
+
+(a)
+Because the 0 is nonnegative number but the algorithm says
+n <= 0 throw exception and says n is negative number. To fix
+it we need to set it to n < 0 instead of n <= 0.
+
+(b)
+Because the sequence index starts at 0 and the first two numbers
+are 1, it should return 1 when n = 0, 1. However, the algorithm
+says it return 1 when n <= 2. To fix it, we need to change it
+from n <= 2 to n < 2
+
+(c)
+This test failed because it is expecting 2 when we input 2 in it,
+which is the sum of previous two numbers. However, the algorithm
+is returning the difference between previous two numbers. To fix
+it, we need to change the minus "-"  to plus "+".
+
+Problem 7. 
+
+1. The getVolume returns 0 and not return the volume of the ball.
+To fix it, I change the return value to volume.
+
+In the Ball constructor, volume input is assigned to volume input
+itself. To fix it, we can change the input volume assign to
+this.volume which the volume of the ball and can distinguish from
+the input name.
+
+2. I think the first one is better because the second one requires
+to create a new global variable.
+
+3.The first way to implement getBallsFromSmallest() is to add a
+comparator interface in the box class and define the compare method
+with the difference between the first ball's volume and the second
+ball's volume. Then use an Arraylist to store the balls and use sort
+method and comparator to sort it in ascending order.
+
+The second possible way to implement getBallsFromSmallest() is to
+sort the balls when adding and removing balls from container. This
+requires to create an arraylist in ballcontainer and this arraylist
+will keep track of every ball's and sort them based on their volume.
+In this way, the box only need to return the iterator of this arraylist
+
+I think the better way is the first one because the second one make
+it complex to keep track of the balls all the time. Also, the contents and
+this arraylist have similar function and this is kind of redundant.
+

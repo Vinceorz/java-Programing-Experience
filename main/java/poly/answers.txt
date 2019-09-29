@@ -1,0 +1,178 @@
+CSE 331 Homework 4.  Answers to written questions.
+Edit this file to supply your answers.
+
+Name:  Nuo Chen
+
+Problem 0.
+
+(a)
+r = p * q:
+    set r = 0;
+    {inv: r = tp * p0 + tp * p1 + ... tp * pj - 1), where pj - 1 is the jth - 1
+    term in p}
+    foreach term tq, in q: {
+        {inv: r = tp * p0 + tp * p1 + ... tp * pj - 1), where pj - 1 is the jth - 1
+            term in p}
+        foreach term tp, in p {
+            insert(tp * tq) to r as a new term
+        }
+    }
+    r combine any tr with the same degree using the polynomial addition
+
+
+(b)
+r = p.div(q);
+    set r = 0;
+    set end = false;
+    Original_p = p;
+    {inv: Original_p = r * q + p}
+    while (!end) {
+        foreach term tp in p {
+            find the tp with highest degree => tp_high
+        }
+        foreach term tq in q {
+            find the tq with the highest degree => tq_high
+        }
+        if (tp_high_degree < tq_high_degree || p == 0) {
+            end = true;
+        } else {
+            r += tp_high / tq_high;
+            p = p - (tp_high / tq_high) * q; // using polynomial multiplication and addition
+        }
+     }
+
+(c)
+p = (x^3+x-1)
+q = (x + 1)
+r = 0
+Original_p = (x^3+x-1)
+end = false
+while (!end) {
+
+iteration 1: p = (x^3+x-1), q = (x + 1), r = 0, Original_p = (x^3+x-1), end = false
+            foreach term tp in p {
+                find the tp with highest degree => tp_high = x^3
+            }
+            foreach term tq in q {
+                find the tq with the highest degree => tq_high = x
+            }
+            if (tp_high < tq_high || p == 0) {
+
+            } else {
+                // current state pass the test and come here
+                r += tp_high / tq_high = x^3 / x = 0 + x^2 = x^2
+                p = p - (tp_high / tq_high) * q = x^3+x-1 - x^2 * (x+1) = -x^2+x-1
+            }
+iteration 2: p = (-x^2+x-1), q = (x + 1), r = x^2, Original_p = (x^3+x-1), end = false
+            foreach term tp in p {
+                find the tp with highest degree => tp_high = -x^2
+            }
+            foreach term tq in q {
+                find the tq with the highest degree => tq_high = x
+            }
+            if (tp_high < tq_high || p == 0) {
+                end = true
+            } else {
+                // current state pass the test and come here
+                r += tp_high / tq_high = -x^2 / x = x^2 + -x = x^2-x
+                p = p - (tp_high / tq_high) * q =(-x^2+x-1) - (-x) * (x+1) = 2x-1
+            }
+iteration 3: p = 2x-1, q = (x + 1), r = x^2-x, Original_p = (x^3+x-1), end = false
+             foreach term tp in p {
+                find the tp with highest degree => tp_high = 2x
+             }
+             foreach term tq in q {
+                find the tq with the highest degree => tq_high = x
+             }
+             if (tp_high < tq_high || p == 0) {
+                end = true
+             } else {
+                // current state pass the test and come here
+                r += tp_high / tq_high = 2x / x = x^2-x + 2= x^2-x+2
+                p = p - (tp_high / tq_high) * q =(2x-1) - 2 * (x+1) = -3
+             }
+iteration 4: p = -3, q = (x + 1), r = x^2-x+2, Original_p = (x^3+x-1), end = false
+             foreach term tp in p {
+                find the tp with highest degree => tp_high = -3
+             }
+             foreach term tq in q {
+                find the tq with the highest degree => tq_high = x
+             }
+             if (tp_high_degree < tq_high_degree || p == 0) {
+                // go to here because tp_high < tq_high
+                end = true
+             } else {
+
+             }
+iteration 5: p = -3, q = (x + 1), r = x^2-x+2, Original_p = (x^3+x-1), end = true
+             // end the while loop because end is true
+}
+
+
+Problem 1.
+
+(a)
+1. the second constructor needs to delete the gcd part to satisfy the new rep, which
+is more efficient because it cares less conditions.
+2. toString, equals need to use gcd method inside to adhere the given spec, which is
+less efficient as it need more codes to achieve same result before
+3. hashCode will need gcd to make two equal rational number which one of it might not
+be reduced form, to have the same return int
+
+
+(b)
+1.it fails to meet the specifications of the RatNum class because it says
+it represents an immutable rational number. The new implementation will make the
+rational number mutable
+2. it fails to meet the specifications of the methods because it spec says it
+will return new rational number like a RatNum equal to (this + arg). The new
+implementation return the original rational number
+
+(c)
+Because the original rational number is immutable, all the methods are not mutator.
+Therefore "this" rational number will not be modified and violated the rep invariant.
+
+Problem 2.
+
+(a)
+The checkRep should be put at the end of the constructor. Because most of the methods
+are not mutator, even though some methods do return the private field, but the private
+fields are still immutable type, which comes from an immutable class RanNum and a final
+int
+
+(b)
+1.the constructor no longer need to set the e = 0, can direct set this.expt = 0, this is
+more efficient because it considers less condition
+2.toString method needs to check if it has zero coefficient and non-zero exponent. if it is,
+throw exception and don't produce anything. This is less efficient because it needs to
+use if else check more condition
+3.hashcode method should assign the same hash code when coefficient equals 0. Therefore, it needs
+to check the exponent first. this needs more work and less efficient.
+4.equals method should also check the exponent if both coefficients are 0, this makes the method
+more complex
+
+(c)
+1. the constructor need to be changed that when NaN passed in, it needs to create a RanTerm NaN,
+instead of NaN * x ^ expt, this needs to add an if statement in the constructor, which slightly
+increase the work
+
+2. I prefer the second one, which saves a lot of work while the first one makes more work.
+
+Problem 3.
+I add checkRep at the end of all constructors, and all mutators: add, sub,
+div, mul, differentiate, antidifferentiate,integrate, negate. Because they
+all interact with the private field
+
+This can be allow change one of them while keep the other unchange more easier. However, I
+prefer use one list. Because keeping track of two lists is more complex than just one, can
+you need to handle the index to make sure they are corresponding to each other.
+
+Problem 5.
+
+"x^2+2x+1"
+
+"x^3+3x+3"
+
+"x^2"
+
+"x+5"
